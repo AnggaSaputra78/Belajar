@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tambah Produk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Form Tambah Produk</h2>
+
+  <form action="proses_form.php" method="POST">
+    <label for="nama">Nama Produk:</label>
+    <input type="text" id="nama" name="nama" required>
+
+    <label for="harga">Harga:</label>
+    <input type="number" id="harga" name="harga" required>
+
+    <label for="deskripsi">Deskripsi:</label>
+    <textarea id="deskripsi" name="deskripsi" rows="4" maxlength="500" required></textarea>
+
+    <label for="kategori">Kategori:</label>
+    <select id="kategori" name="kategori" required>
+      <option value="">-- Pilih Kategori --</option>
+      <option value="Elektronik">Elektronik</option>
+      <option value="Pakaian">Pakaian</option>
+      <option value="Makanan">Makanan</option>
+      <option value="Minuman">Minuman</option>
+      <option value="Lainnya">Lainnya</option>
+    </select>
+
+    <label for="gambar">Link Gambar:</label>
+    <input type="url" id="gambar" name="gambar" required>
+
+    <button type="submit">Tambah Produk</button>
+  </form>
+
+</body>
+</html>
