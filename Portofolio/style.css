@@ -1,0 +1,17 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #f57c00 !important;
+}
+
+.btn-primary {
+  background-color: #f57c00;
+  border-color: #f57c00;
+}
+
+.btn-primary:hover {
+  background-color: #e65100;
+}

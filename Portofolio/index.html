@@ -1,153 +1,97 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Portofolio</title>
-  <style>
-    :root {
-      --primary-color: #007BFF;
-      --secondary-color: #f8f9fa;
-      --text-color: #333;
-      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: var(--secondary-color);
-      color: var(--text-color);
-    }
-
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .grid-2 {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .card, .about-item {
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: var(--box-shadow);
-    }
-
-    .profile-img {
-      width: 100%;
-      max-width: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      box-shadow: var(--box-shadow);
-    }
-
-    .about-item {
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .portfolio-img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    h2, h3 {
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #ddd;
-    }
-
-    @media (max-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        padding: 1rem;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Portofolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>My Portofolio</h1>
-  </header>
-
-  <section class="container grid grid-2">
-    <div>
-      <h2>Selamat Datang di Website Saya</h2>
-      <p>Ini adalah contoh header dengan dua kolom. Kolom kiri berisi teks seperti ini.</p>
-      <a href="#">Pelajari Lebih Lanjut</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Ludfi Dev</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
     </div>
-    <div style="text-align: center">
-      <img src="Gambar/PP/DSC_7683.JPG" alt="Foto Profil" class="profile-img">
-    </div>
-  </section>
+  </div>
+</nav>
 
-  <section class="container">
-    <h3>About Me</h3>
-    <div class="grid grid-3">
-      <div class="about-item">Full Name</div>
-      <div class="about-item">Education</div>
-      <div class="about-item">Pekerjaan</div>
-      <div class="about-item">Contact</div>
-      <div class="about-item">Hobi</div>
-      <div class="about-item">Alamat</div>
-    </div>
-  </section>
+<!-- Hero Section -->
+<section class="pt-5 mt-5 text-center container">
+  <img src="Gambar/PP/DSC_7683.JPG" class="rounded-circle mb-3" width="120" alt="profile">
+  <h1 class="display-5">Ludfi Dwi Septanto Rinaidi Angga Saputra</h1>
+  <p class="lead">Web Developer</p>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutModal">Learn More</button>
+</section>
 
-  <section class="container">
-    <h3>Portofolio</h3>
-    <div class="grid grid-3">
-      <div class="card">
-        <img src="https://via.placeholder.com/350x200" alt="Proyek 1" class="portfolio-img">
-        <p><strong>Proyek 1</strong><br>Deskripsi proyek 1.</p>
+<!-- Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tentang Saya</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/350x200" alt="Proyek 2" class="portfolio-img">
-        <p><strong>Proyek 2</strong><br>Deskripsi proyek 2.</p>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/350x200" alt="Proyek 3" class="portfolio-img">
-        <p><strong>Proyek 3</strong><br>Deskripsi proyek 3.</p>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/350x200" alt="Proyek 4" class="portfolio-img">
-        <p><strong>Proyek 4</strong><br>Deskripsi proyek 4.</p>
+      <div class="modal-body">
+        <p>Saya adalah seorang Web Developer dengan minat pada desain UI/UX dan pemrograman backend.</p>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 Website Saya
-  </footer>
+<!-- About Section -->
+<section id="about" class="bg-light py-5">
+  <div class="container text-center">
+    <h2>About Me</h2>
+    <div class="row mt-4">
+      <div class="col-md-4"><strong>Full Name</strong><p>Ludfi Dwi Septanto Rinaidi Angga Saputra</p></div>
+      <div class="col-md-4"><strong>Education</strong><p>UNIROW Tuban</p></div>
+      <div class="col-md-4"><strong>Pekerjaan</strong><p>Frontend Developer</p></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"><strong>Contact</strong><p>081450324748</p></div>
+      <div class="col-md-4"><strong>Hobi</strong><p>Ngoding, Desain</p></div>
+      <div class="col-md-4"><strong>Alamat</strong><p>Tuban, Jatim</p></div>
+    </div>
+  </div>
+</section>
 
+<!-- Project Section -->
+<section id="project" class="py-5">
+  <div class="container text-center">
+    <h2>My Projects</h2>
+    <div class="row mt-4">
+      <div class="col-md-4 mb-3">
+        <img src="Gambar/PROJECT/Screenshot 2025-06-01 111848.png" class="img-fluid rounded">
+        <p>Project 1</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="Gambar/PROJECT/Screenshot 2025-06-01 112047.png" class="img-fluid rounded">
+        <p>Project 2</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="Gambar/PROJECT/Screenshot 2025-06-01 112256.png" class="img-fluid rounded">
+        <p>Project 3</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  &copy; 2025 Ludfi Dwi Septanto Rinaidi Angga Saputra. All Rights Reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
