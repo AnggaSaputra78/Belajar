@@ -1,33 +1,54 @@
-const produk = [
-  {
-    nama: "Laptop Gaming",
-    harga: "Rp 10.000.000",
-    deskripsi: "Laptop performa tinggi untuk gaming",
-    gambar: "Gambar/Laptop-Gaming-Terbaik1-845x442.jpg",
-    kategori: "elektronik"
-  },
-  {
-    nama: "Kaos Polos",
-    harga: "Rp 50.000",
-    deskripsi: "Kaos bahan katun nyaman dipakai",
-    gambar: "Gambar/CduzDuG085WOQihsCdDCuZ2mm5nXzSS9OA8sgrd9xKjA.webp",
-    kategori: "fashion"
-  },
-  {
-    nama: "Headphone Bass",
-    harga: "Rp 300.000",
-    deskripsi: "Headphone dengan suara bass mantap",
-    gambar: "Gambar/1.MOCK-UP.png",
-    kategori: "elektronik"
-  },
-  {
-    nama: "Jaket Hoodie",
-    harga: "Rp 150.000",
-    deskripsi: "Jaket hangat dengan bahan fleece",
-    gambar: "Gambar/9e1de7ddde70d8ecf1e4cdcd695803bb.jpeg",
-    kategori: "fashion"
+function fetchProduk() {
+  fetch('get_produk.php')
+    .then(res => res.json())
+    .then(data => {
+      produk = data;
+      filterProduk(); // tampilkan dengan filter aktif
+    });
+}
+
+function tambahProduk() {
+  const nama = prompt("Nama produk:");
+  const harga = prompt("Harga:");
+  const deskripsi = prompt("Deskripsi:");
+  const gambar = prompt("URL Gambar:");
+  const kategori = prompt("Kategori:");
+
+  if (nama && harga && deskripsi && gambar && kategori) {
+    fetch('add_produk.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `nama=${nama}&harga=${harga}&deskripsi=${deskripsi}&gambar=${gambar}&kategori=${kategori}`
+    }).then(fetchProduk);
   }
-];
+}
+
+function editProduk(id) {
+  const p = produk.find(p => p.id == id);
+  const nama = prompt("Edit nama:", p.nama);
+  const harga = prompt("Edit harga:", p.harga);
+  const deskripsi = prompt("Edit deskripsi:", p.deskripsi);
+  const gambar = prompt("Edit gambar:", p.gambar);
+  const kategori = prompt("Edit kategori:", p.kategori);
+
+  if (nama && harga && deskripsi && gambar && kategori) {
+    fetch('edit_produk.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `id=${id}&nama=${nama}&harga=${harga}&deskripsi=${deskripsi}&gambar=${gambar}&kategori=${kategori}`
+    }).then(fetchProduk);
+  }
+}
+
+function hapusProduk(id) {
+  if (confirm("Yakin hapus produk ini?")) {
+    fetch('delete_produk.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `id=${id}`
+    }).then(fetchProduk);
+  }
+}
 
 function tampilkanProduk(data) {
   const container = document.getElementById("produk-container");
@@ -41,7 +62,12 @@ function tampilkanProduk(data) {
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${p.nama}</h5>
             <p class="card-text">${p.deskripsi}</p>
-            <div class="mt-auto fw-bold text-success">${p.harga}</div>
+            <div class="fw-bold text-success">${p.harga}</div>
+            <p class="text-muted"><small>${p.kategori}</small></p>
+            <div class="mt-auto d-flex justify-content-between">
+              <button class="btn btn-sm btn-primary" onclick="editProduk(${p.id})">Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="hapusProduk(${p.id})">Hapus</button>
+            </div>
           </div>
         </div>
       </div>
@@ -55,5 +81,5 @@ function filterProduk() {
   tampilkanProduk(hasil);
 }
 
-// Tampilkan semua saat halaman pertama kali dibuka
-tampilkanProduk(produk);
+let produk = [];
+fetchProduk(); // initial load
