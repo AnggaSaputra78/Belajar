@@ -1,0 +1,39 @@
+<h2 class="text-center mt-4">Edit Produk</h2>
+<form id="form-edit" method="POST" class="container w-50 mt-4">
+  <input type="hidden" name="id" id="id">
+  <input name="nama" id="nama" class="form-control mb-2" placeholder="Nama Produk">
+  <input name="harga" type="number" id="harga" class="form-control mb-2" placeholder="Harga">
+  <select name="kategori" id="kategori" class="form-control mb-2">
+    <option value="elektronik">Elektronik</option>
+    <option value="fashion">Fashion</option>
+  </select>
+  <input name="gambar" id="gambar" class="form-control mb-2" placeholder="Link Gambar">
+  <textarea name="deskripsi" id="deskripsi" class="form-control mb-2" placeholder="Deskripsi"></textarea>
+  <button class="btn btn-primary">Update</button>
+</form>
+
+<script>
+const id = new URLSearchParams(window.location.search).get("id");
+
+fetch(`produk-ambil.php?kategori=semua`)
+  .then(res => res.json())
+  .then(data => {
+    const produk = data.find(p => p.id === id);
+    if (produk) {
+      document.getElementById("id").value = produk.id;
+      document.getElementById("nama").value = produk.nama;
+      document.getElementById("harga").value = produk.harga;
+      document.getElementById("kategori").value = produk.kategori;
+      document.getElementById("gambar").value = produk.gambar;
+      document.getElementById("deskripsi").value = produk.deskripsi;
+    }
+  });
+
+document.getElementById("form-edit").onsubmit = function(e) {
+  e.preventDefault();
+  fetch("produk-edit.php", {
+    method: "POST",
+    body: new FormData(this)
+  }).then(() => window.location = "index.html");
+};
+</script>
